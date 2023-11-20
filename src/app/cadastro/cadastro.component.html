@@ -1,30 +1,25 @@
+<div>
 <div class="container-fluid">
-    <h1>Teste Full Stack</h1>
+  <div class="display">
+    <h2>School Full Stack</h2>
     <div class="inputs">
-        <div class="col-4">
-            <div class="mb-1">
-                User
-            </div>
-            <input type="text" class="form-control" [(ngModel)]="user">
+      <div class="col-4">
+        <div class="mb-1">
+          User
         </div>
-       <div class="col-4">
-            <div class="mb-1">Quantidade</div>
-            <input type="number" class="form-control" [(ngModel)]="qtdUser"> 
-        </div>       
+        <input type="text" class="form-control" [(ngModel)]="user">
+      </div>
+      <div class="col-4">
+        <div class="mb-1">Matricula</div>
+        <input type="number" class="form-control" [(ngModel)]="qtdUser">
+      </div>
     </div>
-    <div class="d-flex flex-row-reverse">
-        <button class="btn btn-primary" (click)="adicionarNovoUser()">adicionar</button>
-    </div>
-    <div class="container">
-        <h3>Cadastro de Alunos</h3>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let user of listUser ; let i=index">
-               {{user.user}} - {{user.qtdUser}} | <a href="#" (click)="excluirUser(i)">Excluir</a>
-            </li>
-        </ul>
-        
-    </div>
-    <div class="">
+    
+  </div>
+     <div class="d-flex flex-row-reverse dir">
+        <button class="btn btn-primary" (click)="adicionarNovoUser()">Adicionar</button>
+      </div>
+</div>
 
-    </div>
+  
 </div>

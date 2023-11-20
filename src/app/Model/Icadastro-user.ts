@@ -1,4 +1,4 @@
-export interface ICadastroUser{
-    user:string;
-    qtdUser:number;
-}
+    export interface ICadastroUser{
+        user:string;
+        qtdUser:number;
+    }

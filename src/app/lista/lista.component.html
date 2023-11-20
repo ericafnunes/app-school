@@ -1,0 +1,15 @@
+<div class="container-fluid">
+<h3 class="title-list">Cadastro de Alunos</h3>
+<ul class="list-group">
+<li class="list-group-item" *ngFor="let user of listUser; let i=index">
+  {{user.user}} - {{user.qtdUser}}   |
+  <a href="#" class="text-danger" (click)="excluirUser(i)"><i class="bi bi-trash3"></i></a>   |
+  <a href="#" class="text-primary" (click)="editarUser(i)"><i class="bi bi-pencil-square"></i></a>
+  <div *ngIf="editedUser !== null">
+    <input type="text" [(ngModel)]="editedUser.user">
+    <input type="number" [(ngModel)]="editedUser.qtdUser">
+    <button (click)="salvarEdicao()">Salvar</button>
+  </div>
+</li>
+</ul>
+</div>

@@ -6,7 +6,6 @@ import { ICadastroUser } from "../Model/Icadastro-user";
 })
 
 export class CadastroService{
-    // users = ["maria", "jose", "ana", "foo"];
     users:ICadastroUser[] = [{
         user:"Maria",
         qtdUser:1
@@ -25,5 +24,7 @@ export class CadastroService{
     excluirUser(index:number):void{
         this.users.splice(index, 1);
     }
+    editarUser(index: number, novoUser: ICadastroUser): void {
+    this.users[index] = novoUser;
 }
-
+}
