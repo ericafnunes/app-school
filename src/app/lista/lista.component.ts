@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CadastroService } from '../cadastro/cadastro.component.service';
 import { ICadastroUser } from '../Model/Icadastro-user';
+import { HistoricoService } from '../historico.service';
 
 @Component({
   selector: 'app-lista',
@@ -9,10 +10,13 @@ import { ICadastroUser } from '../Model/Icadastro-user';
 })
 export class ListaComponent {
   listUser: ICadastroUser[] = [];
-  editedUser: ICadastroUser | null = null; 
   editedUserIndex: number | null = null;
+  userAntesEdicao: ICadastroUser | null = null;
 
-  constructor(private cadastroService: CadastroService) {
+  constructor(
+    private cadastroService: CadastroService,
+    private historicoService: HistoricoService
+  ) {
     this.listUser = this.cadastroService.users;
   }
 
@@ -21,16 +25,33 @@ export class ListaComponent {
   }
 
   editarUser(index: number): void {
-    const userAtual = this.listUser[index];
-    this.editedUser = { ...userAtual }; 
-    this.editedUserIndex = index;
+    this.userAntesEdicao = { ...this.listUser[index] };
+
+    this.editedUserIndex = this.editedUserIndex === index ? null : index;
+
+    if (this.editedUserIndex !== null) {
+      const detalhesAntesEdicao = `Usuário: ${this.userAntesEdicao.user}, Matrícula: ${this.userAntesEdicao.qtdUser}`;
+
+      this.historicoService.adicionarEvento({
+        timestamp: new Date(),
+        tipo: 'Edição (antes)',
+        detalhes: detalhesAntesEdicao
+      });
+    }
   }
 
   salvarEdicao(): void {
-    if (this.editedUser !== null && this.editedUserIndex !== null) {
-      this.cadastroService.editarUser(this.editedUserIndex, this.editedUser);
-      this.editedUser = null; 
-      this.editedUserIndex = null; 
+    if (this.editedUserIndex !== null && this.userAntesEdicao !== null) {
+      const detalhesDepoisEdicao = `Usuário: ${this.listUser[this.editedUserIndex].user}, Matrícula: ${this.listUser[this.editedUserIndex].qtdUser}`;
+
+      this.historicoService.adicionarEvento({
+        timestamp: new Date(),
+        tipo: 'Edição (depois)',
+        detalhes: detalhesDepoisEdicao
+      });
+
+      this.editedUserIndex = null;
+      this.userAntesEdicao = null;
     }
   }
 }

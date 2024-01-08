@@ -1,15 +1,40 @@
-<div class="container-fluid">
-<h3 class="title-list">Cadastro de Alunos</h3>
-<ul class="list-group">
-<li class="list-group-item" *ngFor="let user of listUser; let i=index">
-  {{user.user}} - {{user.qtdUser}}   |
-  <a href="#" class="text-danger" (click)="excluirUser(i)"><i class="bi bi-trash3"></i></a>   |
-  <a href="#" class="text-primary" (click)="editarUser(i)"><i class="bi bi-pencil-square"></i></a>
-  <div *ngIf="editedUser !== null">
-    <input type="text" [(ngModel)]="editedUser.user">
-    <input type="number" [(ngModel)]="editedUser.qtdUser">
-    <button (click)="salvarEdicao()">Salvar</button>
-  </div>
-</li>
-</ul>
+ <div class="container-fluid">
+  <h3 class="title-list">Cadastro de Alunos</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Usuário</th>
+        <th scope="col">Matrícula</th>
+        <th scope="col">Excluir</th>
+        <th scope="col">Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of listUser; let i=index">
+        <td>
+          <ng-container *ngIf="editedUserIndex !== i; else editInput">
+            {{ user.user }}
+          </ng-container>
+          <ng-template #editInput>
+            <input [(ngModel)]="user.user" type="text" class="form-control">
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="editedUserIndex !== i; else editInputQtd">
+            {{ user.qtdUser }}
+          </ng-container>
+          <ng-template #editInputQtd>
+            <input [(ngModel)]="user.qtdUser" type="number" class="form-control">
+          </ng-template>
+        </td>
+        <td>
+          <a href="#" class="text-danger" (click)="excluirUser(i)"><i class="bi bi-trash3"></i></a>
+        </td>
+        <td>
+          <a href="#" class="text-primary" *ngIf="editedUserIndex !== i" (click)="editarUser(i)"><i class="bi bi-pencil-square"></i></a>
+          <button *ngIf="editedUserIndex === i" class="btn btn-success" (click)="salvarEdicao()">Salvar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

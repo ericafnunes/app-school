@@ -6,6 +6,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { FormsModule } from '@angular/forms';
 import { CadastroService } from './cadastro/cadastro.component.service';
 import { ListaComponent } from './lista/lista.component';
+import { HistoricoService } from './historico.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { ListaComponent } from './lista/lista.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [CadastroService],
+  providers: [CadastroService, HistoricoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
