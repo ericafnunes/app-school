@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { CadastroService } from './cadastro/cadastro.component.service';
 import { ListaComponent } from './lista/lista.component';
 import { HistoricoService } from './historico.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroComponent,
-    ListaComponent
+    ListaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
