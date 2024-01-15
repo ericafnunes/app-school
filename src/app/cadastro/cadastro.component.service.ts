@@ -33,15 +33,9 @@ export class CadastroService {
   }
 
   excluirUser(index: number): void {
-    const usuarioRemovido = this.users[index];
-
-    this.historicoService.adicionarEvento({
-      timestamp: new Date(),
-      tipo: 'Exclusão',
-      detalhes: `Exclusão de usuário: ${usuarioRemovido.user}, Matrícula: ${usuarioRemovido.qtdUser}`,
-    });
-
-    this.users.splice(index, 1);
+    if (index >= 0 && index < this.users.length) {
+      this.users.splice(index, 1);
+    }
   }
 
   editarUser(index: number, novoUser: ICadastroUser): void {
@@ -56,3 +50,4 @@ export class CadastroService {
     });
   }
 }
+

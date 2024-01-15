@@ -1,14 +1,3 @@
 <div class="container">
-    <app-cadastro></app-cadastro>
-    <app-lista></app-lista>
-    <div>
-      <h3>Histórico de Alterações</h3>
-      <div *ngFor="let evento of historicoService.historico">
-        {{ evento.timestamp | date: 'dd/MM/yyyy HH:mm:ss' }} - {{ evento.tipo }} - {{ evento.detalhes }}
-      </div>
-      <button class="btn btn-danger" (click)="limparHistorico()">Limpar Histórico</button>
-    </div>
-  </div>
-  
-  
-  
+  <router-outlet></router-outlet>
+</div>

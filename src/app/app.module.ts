@@ -8,17 +8,25 @@ import { CadastroService } from './cadastro/cadastro.component.service';
 import { ListaComponent } from './lista/lista.component';
 import { HistoricoService } from './historico.service';
 import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroComponent,
     ListaComponent,
-    LoginComponent
+    LoginComponent, 
+
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule, 
+    AppRoutingModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [CadastroService, HistoricoService],
   bootstrap: [AppComponent]

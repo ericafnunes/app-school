@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CadastroService } from '../cadastro/cadastro.component.service';
 import { ICadastroUser } from '../Model/Icadastro-user';
+import { ToastrService } from 'ngx-toastr';
 import { HistoricoService } from '../historico.service';
 
 @Component({
@@ -15,33 +16,50 @@ export class ListaComponent {
 
   constructor(
     private cadastroService: CadastroService,
-    private historicoService: HistoricoService
+    private historicoService: HistoricoService,
+    private toastr: ToastrService,
   ) {
     this.listUser = this.cadastroService.users;
   }
 
-  excluirUser(index: number): void {
-    this.cadastroService.excluirUser(index);
-  }
-
-  editarUser(index: number): void {
-    this.userAntesEdicao = { ...this.listUser[index] };
-
-    this.editedUserIndex = this.editedUserIndex === index ? null : index;
-
-    if (this.editedUserIndex !== null) {
-      const detalhesAntesEdicao = `Usuário: ${this.userAntesEdicao.user}, Matrícula: ${this.userAntesEdicao.qtdUser}`;
-
+  excluirUser(event: Event, index: number): void {
+    console.log('aaaaaa');
+    event.preventDefault();
+    if (index >= 0 && index < this.listUser.length) {
+      const userRemovido = this.listUser[index];
+      
       this.historicoService.adicionarEvento({
         timestamp: new Date(),
-        tipo: 'Edição (antes)',
-        detalhes: detalhesAntesEdicao
+        tipo: 'Exclusão',
+        detalhes: `Exclusão de usuário: ${userRemovido.user}, Matrícula: ${userRemovido.qtdUser}`
       });
+      setTimeout(() => {
+        this.toastr.success('Usuário excluído com sucesso!!!');
+      }, 0);
+      this.cadastroService.excluirUser(index);
+    } else {
+      console.error('Índice inválido ao excluir:', index);
     }
   }
+  
+  editarUser(event: Event, index: number): void {
+    event.preventDefault();
+    const userAtual = this.listUser[index];
+
+    this.editedUserIndex = index;
+  
+    const detalhesAntesEdicao = `Usuário: ${userAtual.user}, Matrícula: ${userAtual.qtdUser}`;
+  
+    this.historicoService.adicionarEvento({
+      timestamp: new Date(),
+      tipo: 'Edição (antes)',
+      detalhes: detalhesAntesEdicao
+    });
+  }
+  
 
   salvarEdicao(): void {
-    if (this.editedUserIndex !== null && this.userAntesEdicao !== null) {
+    if (this.editedUserIndex !== null) {
       const detalhesDepoisEdicao = `Usuário: ${this.listUser[this.editedUserIndex].user}, Matrícula: ${this.listUser[this.editedUserIndex].qtdUser}`;
 
       this.historicoService.adicionarEvento({
@@ -49,9 +67,11 @@ export class ListaComponent {
         tipo: 'Edição (depois)',
         detalhes: detalhesDepoisEdicao
       });
-
-      this.editedUserIndex = null;
-      this.userAntesEdicao = null;
+      setTimeout(() => {
+        this.toastr.success('Usuário alterado com sucesso!!!');
+      }, 0);
+      this.editedUserIndex = null; 
     }
   }
+
 }

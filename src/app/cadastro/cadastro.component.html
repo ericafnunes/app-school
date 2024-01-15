@@ -1,21 +1,36 @@
-<div>
-<div class="container-fluid">
-  <div class="display">
-    <h2>School Full Stack</h2>
-    <div class="inputs">
-      <div class="col-4">
-        <div class="mb-1">
-          Usuario
+  <div>
+    <div class="container-fluid">
+      <div class="display">
+        <h2>School Full Stack</h2>
+        
+        <div class="inputs">
+          <div class="col-4">
+            <div class="mb-1">
+              Usuario
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="user">
+          </div>
+          <div class="col-4">
+            <div class="mb-1">Matricula</div>
+            <input type="number" class="form-control" [(ngModel)]="qtdUser">
+          </div>
         </div>
-        <input type="text" class="form-control" [(ngModel)]="user">
       </div>
-      <div class="col-4">
-        <div class="mb-1">Matricula</div>
-        <input type="number" class="form-control" [(ngModel)]="qtdUser">
-      </div>
+         <div class="d-flex flex-row-reverse dir">
+            <button class="btn btn-primary" (click)="adicionarNovoUser()">Adicionar</button>
+          </div>
+          <app-lista></app-lista>
+          <div>
+            <h3>Histórico de Alterações</h3>
+            <div *ngFor="let evento of historicoService.historico">
+              {{ evento.timestamp | date: 'dd/MM/yyyy HH:mm:ss' }} - {{ evento.tipo }} - {{ evento.detalhes }}
+            </div>
+              <button class="btn btn-danger" (click)="limparHistorico()">Limpar Histórico</button>
+              <div class="div-col">
+                <button class="btn btn-primary" (click)="logout()">Logout</button>
+              </div>    
+          </div>
     </div>
-  </div>
-     <div class="d-flex flex-row-reverse dir">
-        <button class="btn btn-primary" (click)="adicionarNovoUser()">Adicionar</button>
-      </div>
-</div>
+    </div>
+
+  

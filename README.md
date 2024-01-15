@@ -4,10 +4,13 @@
 CRUD matricula de alunos
 
 
-![Alt text](<Captura de Tela 2023-11-20 às 14.28.26.png>)
+<img width="1434" alt="Tela de login do app" src="src/assets/bgd.png">
+
 
 ---
+
 Projeto Angular
+- Login
 - Adiciona User
 - Edita User
 - Exclui User
@@ -24,4 +27,10 @@ Projeto Angular
 #### Protocolo HTTPS:
 
     https://github.com/ericafnunes/app-school.git
-    
+
+### Logar com o usuario:
+:rotating_light:  - Dados: 
+
+     Email: lange@email.com
+
+     Senha: Senh4foo
