@@ -1,7 +1,7 @@
 # :computer: projeto school full stack
 ### Sobre o projeto
 
-CRUD matricula de alunos
+CRUmatricula de alunos
 
 
 <img width="1434" alt="Tela de login do app" src="src/assets/bgd.png">
@@ -19,7 +19,7 @@ Projeto Angular
 
 
 
-<a src="https://schoollapp.netlify.app/login">https://schoollapp.netlify.app/login</a>
+<a src="https://schoollapp.netlify.app/">https://schoollapp.netlify.app/</a>
 
 
 ### Instruções de instalação
