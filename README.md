@@ -17,7 +17,9 @@ Projeto Angular
 
 #### :arrow_down: deploy:
 
-<a src="hhttps://schoollapp.netlify.app/login">https://schoollapp.netlify.app/login/</a>
+
+
+<a src="https://schoollapp.netlify.app/login">https://schoollapp.netlify.app/login</a>
 
 
 ### Instruções de instalação
